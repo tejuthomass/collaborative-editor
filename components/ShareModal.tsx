@@ -17,16 +17,27 @@ import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 import UserTypeSelector from "./UserTypeSelector"
 import Collaborator from "./Collaborator"
+import { updateDocumentAccess } from "@/lib/actions/room.actions"
 
 const ShareModel = ({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) => {
 
     const user = useSelf()
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [email, setEmail] = useState(false)
+    const [email, setEmail] = useState('')
     const [userType, setUserType] = useState<UserType>('viewer')
 
-    const shareDocumentHandler = async () => {}
+    const shareDocumentHandler = async () => {
+        setLoading(true)
+
+        await updateDocumentAccess({ 
+            roomId,
+            email, 
+            userType: userType as UserType, 
+            updatedBy: user.info
+        })
+        setLoading(false)
+    }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -69,7 +80,7 @@ const ShareModel = ({ roomId, collaborators, creatorId, currentUserType }: Share
                             setUserType={setUserType}
                         />
                     </div>
-                    <Button type="submit" on onClick={shareDocumentHandler} className="gradient-blue flex h-full gap-1 px-5" disabled={loading}>
+                    <Button type="submit" onClick={shareDocumentHandler} className="gradient-blue flex h-full gap-1 px-5" disabled={loading}>
                         {loading ? 'Sending...' : 'Invite'}
                     </Button>
                 </div>
