@@ -15,7 +15,8 @@ const Collaborator = ({ roomId, creatorId, collaborator, email, user }: Collabor
             roomId,
             email, 
             userType: type as UserType, 
-            updatedBy: user})
+            updatedBy: user
+        })
         setLoading(false)
     }
     
@@ -54,7 +55,7 @@ const Collaborator = ({ roomId, creatorId, collaborator, email, user }: Collabor
 
             {creatorId === collaborator.id ? (
                 <p className='text-sm text-blue-100'>Owner</p>
-            ): (
+            ) : (
                 <div className='flex items-center'>
                     <UserTypeSelector
                         userType={userType as UserType}

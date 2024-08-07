@@ -19,7 +19,7 @@ import UserTypeSelector from "./UserTypeSelector"
 import Collaborator from "./Collaborator"
 import { updateDocumentAccess } from "@/lib/actions/room.actions"
 
-const ShareModel = ({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) => {
+const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) => {
 
     const user = useSelf()
     const [open, setOpen] = useState(false)
@@ -105,4 +105,4 @@ const ShareModel = ({ roomId, collaborators, creatorId, currentUserType }: Share
     )
 }
 
-export default ShareModel
+export default ShareModal
