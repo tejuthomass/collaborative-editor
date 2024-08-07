@@ -66,7 +66,7 @@ const Home = async () => {
         <div className='document-list-empty'>
           <Image
             src="/assets/icons/doc.svg"
-            alt='document'
+            alt='Document'
             width={40}
             height={40}
             className='mx-auto'

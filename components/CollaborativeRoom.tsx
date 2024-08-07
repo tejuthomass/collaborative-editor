@@ -10,7 +10,7 @@ import { Input } from './ui/input';
 import Image from 'next/image';
 import { updateDocument } from '@/lib/actions/room.actions';
 import Loader from './Loader';
-import ShareModel from './ShareModal';
+import ShareModal from './ShareModal';
 
 const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
 
@@ -34,7 +34,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
           }
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
 
       setLoading(false);
@@ -77,7 +77,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
                       onChange={(e) => setDocumentTitle(e.target.value)}
                       onKeyDown={updateTitleHandler}
                       disable={!editing}
-                      className='docuement-title-input'
+                      className='document-title-input'
                     />
                   ) : (
                     <>
@@ -105,7 +105,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
                 <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
                   <ActiveCollaborators />
 
-                  <ShareModel 
+                  <ShareModal 
                     roomId={roomId}
                     collaborators={users}
                     creatorId={roomMetadata.creatorId}
